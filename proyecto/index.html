@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Final JavaScript</title>
+<style>
+	.oculto {display:  none;}
+	.visible {display:  inline;}
+	td {width: 25px; height: 10px;}
+	ul{margin: auto;}
+	h1{text-align: center;}
+	li{
+		margin: auto;
+		float: left;
+		padding: 20px;
+		text-align: center;
+	}
+	td{
+		border: 1px solid;
+		text-align:center;}
+	table{
+		border-collapse:collapse;}
+	button{
+		cursor:not-allowed;}
+	img{clear: both;}
+	p{ clear: both;}
+	h3{float: left; text-align: right;}
+	table{float: left;}
+	
+</style>
+<script type="text/javascript">
+	var votos=[-1,-1,-1,-1,-1]
+	var puertos=["Etxauri","Larrau","Mendizorrotz","Lagunas de Neila","San Miguel de Aralar"]
+	var dificultad=["Nula","Baja","Media","Alta","Extrema"]
+	var graficos=["Etxauri.png","Larrau.png","Mendizorrotz.png","Neila.png","SMA.png"]
+	var colores=["green","yellow","orange","red","purple"]
+	function comenzar() {
+		document.getElementById("adicional").className="visible";
+		document.getElementById("enlace").className="oculto";
+		document.getElementById("h3").innerHTML=""
+	}
+
+	function dibujar(i){
+		
+		var posicion = puertos.indexOf(i)
+		if (posicion != -1){
+			document.getElementById("h3").innerHTML="Grado de Dificultad"
+			document.getElementById("img").src= graficos[posicion]
+		}
+		document.getElementsByName("voto").style.backgroundColor="white"
+	}
+	function votar(nombre,i){
+
+		for(a=0;a<5;a++){
+        	document.getElementsByName(nombre)[a].style.backgroundColor="white"
+    	}
+		document.getElementsByName(nombre)[i].style.backgroundColor=colores[i]
+		
+	}
+	function fin(){
+		var completo = votos.indexOf(-1)
+		if (completo != -1){
+
+		}
+	}
+	
+</script>
+</head>
+<body>
+	<span id="adicional" class="oculto">
+	<h1 id="h1">RUTAS EN BICI</h1>
+	<nav>
+	<ul>
+		<li onclick="dibujar('Etxauri')">Etxauri</li>
+		<li onclick="dibujar('Larrau')">Larrau</li>
+		<li onclick="dibujar('Mendizorrotz')">Mendizorrotz</li>
+		<li onclick="dibujar('Lagunas de Neila')">Lagunas de Neila</li>
+		<li onclick="dibujar('San Miguel de Aralar')">San Miguel de Aralar</li>
+	</ul>
+	</nav>
+	<div id="imagen">
+		<h2 id="nombre"></h2>
+		<p><img id="img" src=""></p>
+	</div>
+	<div id="tabla">
+		<h3 id="h3">Grado de Dificultad</h3>
+		<p id="si"><table>
+			<tr>
+				<td name="voto" onclick="votar('voto',0)">Nula</td>
+				<td name="voto" onclick="votar('voto',1)">Baja</td>
+				<td name="voto" onclick="votar('voto',2)">Media</td>
+				<td name="voto" onclick="votar('voto',3)">Alta</td>
+				<td name="voto" onclick="votar('voto',4)">Extrema</td>
+			</tr>
+		</table></p>
+	
+		<div id="ranking"></div>
+	</div>
+
+	<div id="abajo">
+		<button id="boton" onclick="fin()">Ver Ranking</button>
+	</div></span>
+	<button id="enlace" class="visible" href="#" onclick="comenzar()">Comenzar</button>
+</body>
+</html>
